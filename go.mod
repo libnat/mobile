@@ -7,6 +7,7 @@ require (
 	github.com/golang/protobuf v1.3.5 // indirect
 	github.com/gopub/conv v0.3.1 // indirect
 	github.com/gopub/gox v1.20.4
+	github.com/gopub/gox/v2 v2.0.2
 	github.com/gopub/log v1.2.0
 	github.com/gopub/types v0.2.3
 	github.com/nyaruka/phonenumbers v1.0.54

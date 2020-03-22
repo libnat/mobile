@@ -25,7 +25,7 @@ func (p *Place) GetLocation() *Point {
 	return (*Point)(p.Location)
 }
 
-type Country geo.Country
+type Country types.Country
 
 type CountryList struct {
 	List []*Country
