@@ -1,4 +1,4 @@
-module github.com/gopub/mobile
+module github.com/libnat/mobile
 
 go 1.14
 
