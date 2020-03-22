@@ -61,23 +61,23 @@ func (a *Any) SetWebPage(wp *WebPage) {
 }
 
 func (a *Any) Image() *Image {
-	return (*Image)((*types.Any)(a).GetValue().(*types.Image))
+	return (*Image)((*types.Any)(a).Value().(*types.Image))
 }
 
 func (a *Any) Video() *Video {
-	return (*Video)((*types.Any)(a).GetValue().(*types.Video))
+	return (*Video)((*types.Any)(a).Value().(*types.Video))
 }
 
 func (a *Any) Audio() *Audio {
-	return (*Audio)((*types.Any)(a).GetValue().(*types.Audio))
+	return (*Audio)((*types.Any)(a).Value().(*types.Audio))
 }
 
 func (a *Any) File() *File {
-	return (*File)((*types.Any)(a).GetValue().(*types.File))
+	return (*File)((*types.Any)(a).Value().(*types.File))
 }
 
 func (a *Any) WebPage() *WebPage {
-	return (*WebPage)((*types.Any)(a).GetValue().(*types.WebPage))
+	return (*WebPage)((*types.Any)(a).Value().(*types.WebPage))
 }
 
 func NewAnyObj() *Any {
@@ -150,7 +150,7 @@ func (a *AnyList) IndexOf(v *Any) int {
 
 func (a *AnyList) FirstImage() *Image {
 	for _, m := range a.List {
-		if img, ok := m.GetValue().(*types.Image); ok {
+		if img, ok := m.Value().(*types.Image); ok {
 			return (*Image)(img)
 		}
 	}
