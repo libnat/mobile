@@ -1,7 +1,6 @@
 package mobile
 
 import (
-	"github.com/gopub/gox/geo"
 	"github.com/gopub/types"
 )
 
@@ -44,7 +43,7 @@ func (l *CountryList) Get(i int) *Country {
 }
 
 func GetCountryList() *CountryList {
-	l := geo.GetCountries()
+	l := GetCountries()
 	ll := NewCountryList()
 	ll.List = make([]*Country, len(l))
 	for i, c := range l {

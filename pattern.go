@@ -1,25 +1,31 @@
 package mobile
 
 import (
-	"github.com/gopub/gox/v2"
+	"net/mail"
+	"net/url"
+
+	"github.com/gopub/conv"
+	"github.com/gopub/types"
 )
 
-func IsEmail(email string) bool {
-	return gox.IsEmail(email)
+func IsEmailAddress(s string) bool {
+	_, err := mail.ParseAddress(s)
+	return err == nil
 }
 
-func IsLink(s string) bool {
-	return gox.IsLink(s)
-}
-
-func IsName(name string) bool {
-	return gox.IsName(name)
+func IsURL(s string) bool {
+	u, err := url.Parse(s)
+	if err != nil {
+		return false
+	}
+	return u.Scheme != "" && u.Host != ""
 }
 
 func IsPhoneNumber(phoneNumber string) bool {
-	return gox.IsPhoneNumber(phoneNumber)
+	return types.IsPhoneNumber(phoneNumber)
 }
 
-func IsBirthDate(s string) bool {
-	return gox.IsBirthDate(s)
+func IsDate(s string) bool {
+	_, err := conv.ToDate(s)
+	return err == nil
 }
