@@ -26,6 +26,9 @@ func IsPhoneNumber(phoneNumber string) bool {
 }
 
 func IsDate(s string) bool {
-	_, err := conv.ToDate(s)
+	if len(s) > 10 {
+		return false
+	}
+	_, err := conv.ToTime(s)
 	return err == nil
 }
