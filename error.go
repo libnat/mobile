@@ -21,3 +21,22 @@ func NewError(code int, message string) *Error {
 		Message: message,
 	}
 }
+
+func ToError(err error) *Error {
+	if err == nil {
+		return nil
+	}
+
+	for {
+		u, ok := err.(interface{ Unwrap() error })
+		if !ok {
+			break
+		}
+		err = u.Unwrap()
+	}
+
+	if ge, ok := err.(*Error); ok {
+		return NewError(ge.Code, ge.Message)
+	}
+	return NewError(0, err.Error())
+}
