@@ -1,6 +1,8 @@
 package mobile
 
-import "github.com/gopub/types"
+import (
+	"github.com/gopub/types"
+)
 
 type IntE struct {
 	Val int
@@ -33,11 +35,24 @@ type Float64E struct {
 }
 
 type SecretManager interface {
-	GetSecret(key string) string
-	SetSecret(key, data string) bool
-	DelSecret(key string) bool
+	Get(key string) string
+	Set(key, data string) bool
+	Del(key string) bool
 }
 
 type Uptimer interface {
 	Uptime() int64
+}
+
+const (
+	KeyDeviceID = "device_id"
+)
+
+func GetDeviceID(m SecretManager) string {
+	id := m.Get(KeyDeviceID)
+	if id == "" {
+		id = types.NewUUID()
+		m.Set(KeyDeviceID, id)
+	}
+	return id
 }
