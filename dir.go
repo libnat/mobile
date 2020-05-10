@@ -5,3 +5,7 @@ type DirInfo struct {
 	Cache     string
 	Temporary string
 }
+
+func NewDirInfo() *DirInfo {
+	return new(DirInfo)
+}
