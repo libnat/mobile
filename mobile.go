@@ -57,4 +57,12 @@ func GetDeviceID(m SecretManager) string {
 	return id
 }
 
-type Date types.Date
+type Date = types.Date
+
+func NewDate(y, m, d int) *Date {
+	return types.NewDate(y, m, d)
+}
+
+func NowDate() *Date {
+	return types.NowDate()
+}
