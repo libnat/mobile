@@ -56,3 +56,5 @@ func GetDeviceID(m SecretManager) string {
 	}
 	return id
 }
+
+type Date types.Date
