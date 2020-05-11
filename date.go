@@ -73,3 +73,6 @@ func (d *Date) DaysOfMonth() int {
 	return d.LastDayOfMonth().Day() - d.FirstDayOfMonth().Day() + 1
 }
 
+func (d *Date) UnixSeconds() int64 {
+	return (*time.Time)(d).Unix()
+}
