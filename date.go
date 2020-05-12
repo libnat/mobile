@@ -76,3 +76,12 @@ func (d *Date) DaysOfMonth() int {
 func (d *Date) UnixSeconds() int64 {
 	return (*time.Time)(d).Unix()
 }
+
+func (d *Date) IsToday() bool {
+	t := NowDate()
+	return t.Year() == d.Year() && t.Month() == d.Month() && t.Day() == d.Day()
+}
+
+func (d *Date) Equals(day *Date) bool {
+	return d.Year() == day.Year() && d.Month() == day.Month() && d.Day() == day.Day()
+}
