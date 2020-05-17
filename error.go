@@ -1,11 +1,11 @@
 package mobile
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/gopub/wine/errors"
+)
 
-type Error struct {
-	Code    int
-	Message string
-}
+type Error errors.Error
 
 func (e *Error) Error() string {
 	return e.Message
@@ -27,16 +27,13 @@ func ToError(err error) *Error {
 		return nil
 	}
 
-	for {
-		u, ok := err.(interface{ Unwrap() error })
-		if !ok {
-			break
-		}
-		err = u.Unwrap()
+	if e, ok := err.(*Error); ok {
+		return e
 	}
 
-	if ge, ok := err.(*Error); ok {
-		return NewError(ge.Code, ge.Message)
+	if e, ok := err.(*errors.Error); ok {
+		return (*Error)(e)
 	}
+
 	return NewError(0, err.Error())
 }
