@@ -59,11 +59,11 @@ func GetDeviceID(m SecretManager) string {
 	return id
 }
 
-func SetTimeZone(name string) {
+func SetTimeZone(name string, offset int) {
 	loc, err := time.LoadLocation(name)
 	if err != nil {
 		log.Errorf("LoadLocation %s: %v", name, err)
-		return
+		loc = time.FixedZone(name, offset)
 	}
 	time.Local = loc
 }
