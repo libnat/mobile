@@ -60,6 +60,7 @@ func GetDeviceID(m SecretManager) string {
 }
 
 func SetTimeZone(name string, offset int) {
+	// LoadLocation get failed on iOS
 	loc, err := time.LoadLocation(name)
 	if err != nil {
 		log.Errorf("LoadLocation %s: %v", name, err)
