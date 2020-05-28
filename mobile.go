@@ -1,7 +1,9 @@
 package mobile
 
 import (
+	"github.com/gopub/log"
 	"github.com/gopub/types"
+	"time"
 )
 
 type IntE struct {
@@ -55,4 +57,13 @@ func GetDeviceID(m SecretManager) string {
 		m.Set(KeyDeviceID, id)
 	}
 	return id
+}
+
+func SetTimeZone(name string) {
+	loc, err := time.LoadLocation(name)
+	if err != nil {
+		log.Errorf("LoadLocation %s: %v", name, err)
+		return
+	}
+	time.Local = loc
 }
