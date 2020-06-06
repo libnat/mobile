@@ -2,7 +2,7 @@ package mobile
 
 import (
 	"fmt"
-	"github.com/gopub/wine/errors"
+	"github.com/gopub/errors"
 )
 
 type Error errors.Error
