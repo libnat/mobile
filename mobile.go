@@ -63,7 +63,7 @@ func SetTimeZone(name string, offset int) {
 	// LoadLocation get failed on iOS
 	loc, err := time.LoadLocation(name)
 	if err != nil {
-		log.Errorf("LoadLocation %s: %v", name, err)
+		log.Warnf("Cannot load location %s: %v. Set fixed zone", name, err)
 		loc = time.FixedZone(name, offset)
 	}
 	time.Local = loc
