@@ -8,10 +8,9 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"strings"
 
-	"github.com/google/uuid"
 	"github.com/gopub/errors"
+	"github.com/gopub/types"
 )
 
 type StorageHandler interface {
@@ -104,7 +103,7 @@ func (s *Storage) UploadImage(name string, data []byte, handler ProgressHandler)
 
 func (s *Storage) Save(data []byte) *StringE {
 	res := new(StringE)
-	res.Val = strings.Replace(uuid.New().URN(), "-", "", -1)
+	res.Val = types.NewUUID()
 	res.Err = ToError(ioutil.WriteFile(s.GetFilePath(res.Val), data, 0644))
 	return res
 }
