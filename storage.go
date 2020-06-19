@@ -104,8 +104,8 @@ func (s *Storage) UploadImage(name string, data []byte, handler ProgressHandler)
 
 func (s *Storage) Save(data []byte) *StringE {
 	res := new(StringE)
-	name := strings.Replace(uuid.New().URN(), "-", "", -1)
-	res.Err = ToError(ioutil.WriteFile(s.GetFilePath(name), data, 0644))
+	res.Val = strings.Replace(uuid.New().URN(), "-", "", -1)
+	res.Err = ToError(ioutil.WriteFile(s.GetFilePath(res.Val), data, 0644))
 	return res
 }
 
