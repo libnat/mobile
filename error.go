@@ -2,6 +2,7 @@ package mobile
 
 import (
 	"fmt"
+
 	"github.com/gopub/errors"
 )
 

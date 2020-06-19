@@ -1,9 +1,10 @@
 package mobile
 
 import (
+	"time"
+
 	"github.com/gopub/log"
 	"github.com/gopub/types"
-	"time"
 )
 
 type IntE struct {

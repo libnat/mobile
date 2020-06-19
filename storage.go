@@ -3,14 +3,15 @@ package mobile
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/google/uuid"
-	"github.com/gopub/errors"
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/google/uuid"
+	"github.com/gopub/errors"
 )
 
 type StorageHandler interface {
@@ -18,14 +19,15 @@ type StorageHandler interface {
 }
 
 type Storage struct {
-	fileDir  string
+	dir      string
 	imageURL string
 	handler  StorageHandler
 }
 
-func NewStorage(fileDir, imageURL string, handler StorageHandler) *Storage {
+func NewStorage(dir, imageURL string, handler StorageHandler) *Storage {
+	MustMkdir(dir)
 	return &Storage{
-		fileDir:  fileDir,
+		dir:      dir,
 		handler:  handler,
 		imageURL: imageURL,
 	}
@@ -108,7 +110,7 @@ func (s *Storage) Save(data []byte) *StringE {
 }
 
 func (s *Storage) GetFilePath(name string) string {
-	return filepath.Join(s.fileDir, name)
+	return filepath.Join(s.dir, name)
 }
 
 func (s *Storage) Delete(name string) *Error {
