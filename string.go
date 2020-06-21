@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"regexp"
 	"strings"
+
+	"github.com/gopub/types"
 )
 
 type StringList struct {
@@ -54,4 +56,18 @@ func CombineSpaces(s string) string {
 	s = strings.TrimSpace(s)
 	s = whitespaceRegexp.ReplaceAllString(s, " ")
 	return s
+}
+
+type StringSet types.StringSet
+
+func (s *StringSet) Add(str string) {
+	((*types.StringSet)(s)).Add(str)
+}
+
+func (s *StringSet) Contains(str string) bool {
+	return ((*types.StringSet)(s)).Contains(str)
+}
+
+func (s *StringSet) Remove(str string) {
+	((*types.StringSet)(s)).Remove(str)
 }

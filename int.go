@@ -1,6 +1,10 @@
 package mobile
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/gopub/types"
+)
 
 type Int64List struct {
 	List []int64
@@ -64,4 +68,18 @@ func (l *IntList) UnmarshalJSON(data []byte) error {
 
 func (l *IntList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(l.List)
+}
+
+type Int64Set types.Int64Set
+
+func (s *Int64Set) Add(i int64) {
+	((*types.Int64Set)(s)).Add(i)
+}
+
+func (s *Int64Set) Contains(i int64) bool {
+	return ((*types.Int64Set)(s)).Contains(i)
+}
+
+func (s *Int64Set) Remove(i int64) {
+	((*types.Int64Set)(s)).Remove(i)
 }

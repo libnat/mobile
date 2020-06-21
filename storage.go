@@ -9,7 +9,6 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/gopub/errors"
 	"github.com/gopub/types"
 )
 
@@ -84,16 +83,12 @@ func (s *Storage) UploadImage(name string, data []byte, handler ProgressHandler)
 		return res
 	}
 	resp.Body.Close()
-	var urls []string
-	if err = json.Unmarshal(body, &urls); err != nil {
+	var url string
+	if err = json.Unmarshal(body, &url); err != nil {
 		res.Err = ToError(err)
 		return res
 	}
-	if len(urls) == 0 {
-		res.Err = ToError(errors.New("no url"))
-		return res
-	}
-	res.Val = urls[0]
+	res.Val = url
 	if s.handler != nil {
 		s.handler.CacheImage(res.Val, data)
 		s.Delete(name)
