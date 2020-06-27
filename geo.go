@@ -16,12 +16,12 @@ func NewPlace() *Place {
 	return new(Place)
 }
 
-func (p *Place) SetLocation(location *Point) {
-	p.Location = (*types.Point)(location)
+func (p *Place) SetCoordinate(c *Point) {
+	p.Coordinate = (*types.Point)(c)
 }
 
-func (p *Place) GetLocation() *Point {
-	return (*Point)(p.Location)
+func (p *Place) GetCoordinate() *Point {
+	return (*Point)(p.Coordinate)
 }
 
 type Country types.Country

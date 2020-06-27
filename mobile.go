@@ -69,3 +69,7 @@ func SetTimeZone(name string, offset int) {
 	}
 	time.Local = loc
 }
+
+func NewUUID() string {
+	return types.NewUUID()
+}
