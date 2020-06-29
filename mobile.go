@@ -1,6 +1,7 @@
 package mobile
 
 import (
+	"os"
 	"time"
 
 	"github.com/gopub/log"
@@ -68,6 +69,12 @@ func SetTimeZone(name string, offset int) {
 		loc = time.FixedZone(name, offset)
 	}
 	time.Local = loc
+}
+
+func SetLang(lang string) {
+	if err := os.Setenv("LANG", lang); err != nil {
+		log.Errorf("Cannot set env:lang=%s, %v", lang, err)
+	}
 }
 
 func NewUUID() string {
